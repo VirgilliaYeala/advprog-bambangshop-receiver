@@ -77,7 +77,7 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Implement receive function in Notification controller.`
     -   [x] Commit: `Implement list_messages function in Notification service.`
     -   [x] Commit: `Implement list function in Notification controller.`
-    -   [ ] Write answers of your learning module's "Reflection Subscriber-2" questions in this README.
+    -   [x] Write answers of your learning module's "Reflection Subscriber-2" questions in this README.
 
 ## Your Reflections
 This is the place for you to write reflections:
@@ -96,3 +96,18 @@ Jawaban :
 Dalam Rust, tidak diperbolehkan untuk melakukan mutasi pada variabel statik melalui fungsi statik. Hal ini karena Rust menempatkan keamanan sebagai prioritas utama, dan mengizinkan mutasi pada variabel statik melalui fungsi statik dapat menimbulkan bahaya dalam lingkup konkurensi dan pembagian data. Rust menerapkan kebijakan yang ketat terhadap mutasi pada data yang bersifat statis untuk mencegah terjadinya race condition dan konflik data saat eksekusi konkuren. Sebagai gantinya, Rust menyarankan penggunaan mekanisme lain, seperti RwLock<> atau Mutex<>, untuk memastikan akses yang aman dan terkendali ke data statis.
 
 #### Reflection Subscriber-2
+1. Have you explored things outside of the steps in the tutorial, for example: src/lib.rs? If not, explain why you did not do so. If yes, explain things that you have learned from those other parts of code.
+
+Jawaban : 
+Ya, saya telah menjelajahi bagian-bagian di luar langkah-langkah yang disediakan dalam tutorial, termasuk file lib.rs. File ini mengatur konfigurasi aplikasi dan menyediakan utilitas yang diperlukan, seperti variabel REQWEST_CLIENT yang memastikan efisiensi penggunaan sumber daya dengan satu instance reqwest::Client, serta struktur data APP_CONFIG yang memuat konfigurasi dari file .env. Selain itu, tipe alias Result dan Error digunakan untuk penanganan error, sementara struktur ErrorResponse dan fungsi compose_error_response membantu dalam merangkum dan memberikan respons error yang jelas kepada pengguna atau klien aplikasi. Dengan memahami bagian-bagian ini, saya dapat meningkatkan pemahaman saya tentang konfigurasi aplikasi, penanganan error, dan penggunaan utilitas secara efisien dalam pengembangan aplikasi.
+
+2. Since you have completed the tutorial by now and have tried to test your notification system by spawning multiple instances of Receiver, explain how Observer pattern eases you to plug in more subscribers. How about spawning more than one instance of Main app, will it still be easy enough to add to the system?
+
+
+Jawaban : 
+Pola Observer memungkinkan penambahan lebih banyak pelanggan dengan mudah, karena memisahkan logika subjek (pengirim notifikasi) dari pelanggan (penerima notifikasi). Dengan pola Observer, setiap kali subjek mengalami perubahan, ia secara otomatis memberi tahu semua pelanggan yang terdaftar tentang perubahan tersebut. Ini memungkinkan penambahan pelanggan baru tanpa memodifikasi subjek. Namun, ketika memunculkan lebih dari satu instansi Aplikasi Utama, penambahan ke sistem mungkin tidak selesai mudah, karena setiap instansi dapat memiliki konfigurasi dan keadaan yang berbeda. Ini memerlukan manajemen yang lebih rumit untuk memastikan konsistensi antara instansi dan koordinasi di antara mereka.
+
+3. Have you tried to make your own Tests, or enhance documentation on your Postman collection? If you have tried those features, tell us whether it is useful for your work (it can be your tutorial work or your Group Project).
+
+Jawaban : 
+Saya telah mencoba membuat Tes sendiri dan meningkatkan dokumentasi pada koleksi Postman saya. Meningkatkan dokumentasi pada koleksi Postman membantu dalam memperjelas dan mendokumentasikan endpoint API, parameter, dan contoh permintaan/respons, yang sangat berguna untuk komunikasi tim dan pengguna lainnya. Selain itu, membuat Tes sendiri memungkinkan saya untuk menguji fungsionalitas aplikasi secara lebih terperinci dan memastikan bahwa aplikasi berperilaku sesuai dengan yang diharapkan. Kedua fitur ini sangat bermanfaat dalam pekerjaan saya, karena membantu dalam pengujian dan dokumentasi yang lebih baik dari aplikasi yang sedang dikembangkan.

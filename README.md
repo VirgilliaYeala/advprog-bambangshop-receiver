@@ -66,7 +66,7 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Create Notification database and Notification repository struct skeleton.`
     -   [x] Commit: `Implement add function in Notification repository.`
     -   [x] Commit: `Implement list_all_as_string function in Notification repository.`
-    -   [ ] Write answers of your learning module's "Reflection Subscriber-1" questions in this README.
+    -   [x] Write answers of your learning module's "Reflection Subscriber-1" questions in this README.
 -   **STAGE 3: Implement services and controllers**
     -   [ ] Commit: `Create Notification service struct skeleton.`
     -   [ ] Commit: `Implement subscribe function in Notification service.`
@@ -85,5 +85,14 @@ This is the place for you to write reflections:
 ### Mandatory (Subscriber) Reflections
 
 #### Reflection Subscriber-1
+1. In this tutorial, we used RwLock<> to synchronise the use of Vec of Notifications. Explain why it is necessary for this case, and explain why we do not use Mutex<> instead?
+
+Jawaban : 
+Dalam kasus ini, penggunaan RwLock<> diperlukan karena kita ingin memungkinkan multiple referensi ke data Vec Notifications secara aman, namun tetap membatasi akses mutable satu per satu. RwLock<> memungkinkan multiple referensi ke data tetapi hanya satu referensi mutable yang diperbolehkan pada satu waktu, sehingga memastikan keamanan akses ke data saat dibaca dan ditulis secara konkuren. Mengapa tidak menggunakan Mutex<>? Karena Mutex<> hanya mengizinkan satu pemilik pada satu waktu, yang tidak cocok untuk kasus di mana kita membutuhkan banyak pembaca yang berbagi data tanpa memblokir satu sama lain.
+
+2. In this tutorial, we used lazy_static external library to define Vec and DashMap as a “static” variable. Compared to Java where we can mutate the content of a static variable via a static function, why did not Rust allow us to do so?
+
+Jawaban : 
+Dalam Rust, tidak diperbolehkan untuk melakukan mutasi pada variabel statik melalui fungsi statik. Hal ini karena Rust menempatkan keamanan sebagai prioritas utama, dan mengizinkan mutasi pada variabel statik melalui fungsi statik dapat menimbulkan bahaya dalam lingkup konkurensi dan pembagian data. Rust menerapkan kebijakan yang ketat terhadap mutasi pada data yang bersifat statis untuk mencegah terjadinya race condition dan konflik data saat eksekusi konkuren. Sebagai gantinya, Rust menyarankan penggunaan mekanisme lain, seperti RwLock<> atau Mutex<>, untuk memastikan akses yang aman dan terkendali ke data statis.
 
 #### Reflection Subscriber-2
